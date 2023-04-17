@@ -1,0 +1,117 @@
+```
+let node1 = {
+    data: "node1 data",
+    next: null,
+};
+
+let node2 = {
+    data: "node2 data",
+    next: node1,
+};
+
+let node3 = {
+    data: "node3 data",
+    next: node2,
+};
+```
+
+```
+{
+  data: 'node3 data',
+  next: { data: 'node2 data', next: { data: 'node1 data', next: null } }
+}
+```
+
+
+
+```
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.length = 0;
+  }
+
+  // Add a new node at the beginning of the linked list
+  insert(data) {
+    let newNode = { data: data, next: null };
+
+    if (!this.head) {
+      this.head = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+    this.length++;
+  }
+
+  // Remove the node at the given index
+  remove(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error('Index out of range');
+    }
+
+    let currentNode = this.head;
+    let prevNode = null;
+    let i = 0;
+
+    while (i < index) {
+      prevNode = currentNode;
+      currentNode = currentNode.next;
+      i++;
+    }
+
+    if (!prevNode) {
+      this.head = this.head.next;
+    } else {
+      prevNode.next = currentNode.next;
+    }
+
+    this.length--;
+  }
+
+  // Get the data at the given index
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error('Index out of range');
+    }
+
+    let currentNode = this.head;
+    let i = 0;
+
+    while (i < index) {
+      currentNode = currentNode.next;
+      i++;
+    }
+
+    return currentNode.data;
+  }
+
+  // Find the index of the first node that contains the given data
+  indexOf(data) {
+    let currentNode = this.head;
+    let index = 0;
+
+    while (currentNode) {
+      if (currentNode.data === data) {
+        return index;
+      }
+
+      currentNode = currentNode.next;
+      index++;
+    }
+
+    return -1;
+  }
+
+  // Check if the linked list is empty
+  isEmpty() {
+    return this.length === 0;
+  }
+
+  // Get the length of the linked list
+  size() {
+    return this.length;
+  }
+}
+```
