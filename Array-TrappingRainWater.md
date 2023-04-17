@@ -67,6 +67,7 @@ current specific case me Block1 me saare areas count ho gye hai already  ![IMG_7
 
 
 ### Brute Force Working
+The problem can be solved by calculating the maximum height of walls to the left and right of each element. Then, the amount of water that can be trapped at each element is equal to the minimum of the maximum heights of the walls to the left and right minus the height of the element itself. Finally, the total amount of trapped water is the sum of the water trapped at each individual element.
 ```
   const elevationArray = [0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2]
 
